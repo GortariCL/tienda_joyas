@@ -22,9 +22,33 @@ const HATEOASV2 = () => {
 const joya = (id) => {
   return arrJoyas.find((j) => j.id == id);
 }
+//Validacion categoria
+const categoria = (category) => {
+  return arrJoyas.find((j) => j.category == category);
+}
+//Requerimiento 3
+const filtroByCategory = (category) => {
+  return arrJoyas.filter((j) => j.category === category);
+}
+//Requerimiento 4
+const fieldsSelect = (joya, fields) => {
+  for(property in joya){
+    if(!fields.includes(property)) delete joya[property];
+  }
+  return joya;
+}
+//Requerimiento 7
+const orderValues = (order) => {
+  return order == 'asc' ? arrJoyas.sort((a, b) => 
+  (a.value > b.value ? 1 : -1)) : order == 'desc' ? arrJoyas.sort((a, b) => (a.value < b.value ? 1 : -1)) : false;
+}
 
 module.exports = { 
     HATEOASV1, 
     HATEOASV2, 
-    joya
+    joya,
+    filtroByCategory,
+    fieldsSelect,
+    orderValues,
+    categoria
 }
